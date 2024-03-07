@@ -117,7 +117,8 @@ const processStylesheet = ({
   const ast = csstree.parse(text);
   csstree.walk(ast, (node) => {
     if (node.type !== 'Url') return;
-    const value = node.value;
+    // const value = node.value;
+    const value = node;
     let path = value.value;
     if (value.type !== 'Raw') {
       path = path.substr(1, path.length - 2);
@@ -619,7 +620,8 @@ const minimalcss = async (options) => {
             }
           });
 
-          if (node.prelude.children.isEmpty()) {
+          // if (node.prelude.children.isEmpty()) {
+          if (!node.prelude.children.length) {
             // delete rule from a list
             list.remove(item);
           }
